@@ -7,9 +7,9 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var completeCmd = &cobra.Command{
-	Use:   "complete [id]",
-	Short: "Mark a todo as completed",
+var deleteCmd = &cobra.Command{
+	Use:   "delete [id]",
+	Short: "Delete a todo",
 	Args:  cobra.ExactArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		id, err := strconv.Atoi(args[0])
@@ -20,16 +20,16 @@ var completeCmd = &cobra.Command{
 
 		// use global service
 
-		err = service.Complete(id)
+		err = service.Delete(id)
 		if err != nil {
 			fmt.Println("error:", err)
 			return
 		}
 
-		fmt.Println("todo completed:", id)
+		fmt.Println("todo deleted:", id)
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(completeCmd)
+	rootCmd.AddCommand(deleteCmd)
 }

@@ -3,8 +3,6 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/roystonmoraes/go-todo-cli/internal/storage"
-	"github.com/roystonmoraes/go-todo-cli/internal/todo"
 	"github.com/spf13/cobra"
 )
 
@@ -12,8 +10,7 @@ var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all todos",
 	Run: func(cmd *cobra.Command, args []string) {
-		repo := storage.NewJSONRepository("data/todos.json")
-		service := todo.NewService(repo)
+		// use global service
 
 		todos, err := service.List()
 		if err != nil {
